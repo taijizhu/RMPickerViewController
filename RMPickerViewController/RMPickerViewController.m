@@ -51,6 +51,7 @@
     [super viewDidAppear:animated];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate) name:UIDeviceOrientationDidChangeNotification object:nil];
+
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -566,6 +567,10 @@ static UIImage *_cancelImage;
     [super viewDidAppear:animated];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate) name:UIDeviceOrientationDidChangeNotification object:nil];
+    
+    
+    if (self.setupBlock)
+        self.setupBlock(self);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

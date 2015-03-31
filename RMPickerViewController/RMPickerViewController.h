@@ -53,6 +53,13 @@ typedef void (^RMSelectionBlock)(RMPickerViewController *vc, NSArray *selectedRo
 typedef void (^RMCancelBlock)(RMPickerViewController *vc);
 
 /**
+ *  This block is called when the view is displayed.
+ *
+ *  @param vc The picker view controller that just displayed.
+ */
+typedef void (^RMSetupBlock)(RMPickerViewController *vc);
+
+/**
  *  On the one hand, these methods are used to inform the [delegate]([RMPickerViewController delegate]) of an instance of RMPickerViewController about the status of the picker view controller. On the other hand, they are also used to control what content the picker view controller displays. For this purpose this protocol conforms to UIPickerViewDataSource and UIPickerViewDelegate.
  */
 @protocol RMPickerViewControllerDelegate <UIPickerViewDelegate, UIPickerViewDataSource>
@@ -147,6 +154,11 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
  *  Will return the instance of UIPickerView that is used.
  */
 @property (nonatomic, readonly) UIPickerView *picker;
+
+/**
+ *  Will be called oon ViewDidAppear.
+ */
+@property (nonatomic, copy) RMSetupBlock setupBlock;
 
 /**
  *  Will return the label that is used as a title for the picker. You can use this property to set a title and to customize the appearance of the title.
