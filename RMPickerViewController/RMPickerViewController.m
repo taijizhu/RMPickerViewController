@@ -303,7 +303,11 @@ static UIImage *_cancelImage;
 + (void)dismissPickerViewController:(RMPickerViewController *)aPickerViewController {
     [aPickerViewController.rootViewController.view removeConstraint:aPickerViewController.yConstraint];
     aPickerViewController.yConstraint = [NSLayoutConstraint constraintWithItem:aPickerViewController.view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:aPickerViewController.rootViewController.view attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
-    [aPickerViewController.rootViewController.view addConstraint:aPickerViewController.yConstraint];
+       @try {
+            [aPickerViewController.rootViewController.view addConstraint:aPickerViewController.yConstraint];
+        } @catch (NSException *e) {
+            // eat this exception occasionally show up.
+        } 
     
     [aPickerViewController.rootViewController.view setNeedsUpdateConstraints];
     
