@@ -27,7 +27,7 @@
 
 #import <RMActionController/RMActionController.h>
 
-typedef void (^RMSetupBlock)(RMPickerViewController *vc);
+
 
 /**
  *  RMPickerViewController is an iOS control for selecting a row using UIPickerView in a UIActionSheet like fashion. When a RMPickerViewController is shown the user gets the opportunity to select some rows using a UIPickerView.
@@ -47,7 +47,7 @@ typedef void (^RMSetupBlock)(RMPickerViewController *vc);
  */
 @property (nonatomic, readonly) UIPickerView *picker;
 
-
+typedef void (^RMSetupBlock)(RMPickerViewController *vc);
 /**
  *  Will be called oon ViewDidAppear.
  */
