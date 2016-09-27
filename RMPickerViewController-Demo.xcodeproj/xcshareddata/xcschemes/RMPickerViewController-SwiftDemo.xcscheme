@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CABBCD25189520D50006213F"
-               BuildableName = "RMPickerViewController-Demo.app"
-               BlueprintName = "RMPickerViewController-Demo"
+               BlueprintIdentifier = "CA33E07D1BF0D5EF003369F0"
+               BuildableName = "RMPickerViewController-SwiftDemo.app"
+               BlueprintName = "RMPickerViewController-SwiftDemo"
                ReferencedContainer = "container:RMPickerViewController-Demo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,23 +28,13 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CAB580941BF0F2FF00563752"
-               BuildableName = "RMPickerViewController-Demo-Tests.xctest"
-               BlueprintName = "RMPickerViewController-Demo-Tests"
-               ReferencedContainer = "container:RMPickerViewController-Demo.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CABBCD25189520D50006213F"
-            BuildableName = "RMPickerViewController-Demo.app"
-            BlueprintName = "RMPickerViewController-Demo"
+            BlueprintIdentifier = "CA33E07D1BF0D5EF003369F0"
+            BuildableName = "RMPickerViewController-SwiftDemo.app"
+            BlueprintName = "RMPickerViewController-SwiftDemo"
             ReferencedContainer = "container:RMPickerViewController-Demo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CABBCD25189520D50006213F"
-            BuildableName = "RMPickerViewController-Demo.app"
-            BlueprintName = "RMPickerViewController-Demo"
+            BlueprintIdentifier = "CA33E07D1BF0D5EF003369F0"
+            BuildableName = "RMPickerViewController-SwiftDemo.app"
+            BlueprintName = "RMPickerViewController-SwiftDemo"
             ReferencedContainer = "container:RMPickerViewController-Demo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -84,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CABBCD25189520D50006213F"
-            BuildableName = "RMPickerViewController-Demo.app"
-            BlueprintName = "RMPickerViewController-Demo"
+            BlueprintIdentifier = "CA33E07D1BF0D5EF003369F0"
+            BuildableName = "RMPickerViewController-SwiftDemo.app"
+            BlueprintName = "RMPickerViewController-SwiftDemo"
             ReferencedContainer = "container:RMPickerViewController-Demo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -3,7 +3,7 @@
 //  RMPickerViewController
 //
 //  Created by Roland Moers on 26.10.13.
-//  Copyright (c) 2013 Roland Moers
+//  Copyright (c) 2013-2015 Roland Moers
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,68 +24,9 @@
 //  THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, RMPickerViewControllerStatusBarHiddenMode) {
-    /** On iOS 7, the status bar is not hidden in any orientation. On iOS 8, the status is not hidden in portrait mode and hidden in landscape mode. */
-    RMPickerViewControllerStatusBarHiddenModeDefault,
-    /** The status bar is always hidden, regardless of orientation and iOS version. */
-    RMPickerViewControllerStatusBarHiddenModeAlways,
-    /** The status bar is never hidden, regardless of orientation and iOS version. */
-    RMPickerViewControllerStatusBarHiddenModeNever
-};
+#import <RMActionController/RMActionController.h>
 
-@class RMPickerViewController;
-
-/**
- *  This block is called when the user selects a certain row if blocks are used.
- *
- *  @param vc           The picker view controller that just finished selecting a row.
- *  @param selectedRows An array of selected rows (one entry per component).
- */
-typedef void (^RMSelectionBlock)(RMPickerViewController *vc, NSArray *selectedRows);
-
-/**
- *  This block is called when the user cancels if blocks are used.
- *
- *  @param vc The picker view controller that just got canceled.
- */
-typedef void (^RMCancelBlock)(RMPickerViewController *vc);
-
-/**
- *  This block is called when the view is displayed.
- *
- *  @param vc The picker view controller that just displayed.
- */
-typedef void (^RMSetupBlock)(RMPickerViewController *vc);
-
-/**
- *  On the one hand, these methods are used to inform the [delegate]([RMPickerViewController delegate]) of an instance of RMPickerViewController about the status of the picker view controller. On the other hand, they are also used to control what content the picker view controller displays. For this purpose this protocol conforms to UIPickerViewDataSource and UIPickerViewDelegate.
- */
-@protocol RMPickerViewControllerDelegate <UIPickerViewDelegate, UIPickerViewDataSource>
-
-/// @name Select and Cancel
-
-/**
- *  This delegate method is called when the user selects a certain row.
- *
- *  @param vc           The picker view controller that just finished selecting a row.
- *  @param selectedRows An array of selected rows (one entry per component).
- */
-- (void)pickerViewController:(RMPickerViewController *)vc didSelectRows:(NSArray *)selectedRows;
-
-@optional
-
-/**
- *  This delegate method is called when the user selects the cancel button or taps the darkened background (if [backgroundTapsDisabled]([RMPickerViewController backgroundTapsDisabled]) of RMPickerViewController returns NO).
- *
- *  @discussion Implementation of this method is optional. When the cancel button is pressed, the picker view controller will be dismissed. This method can be implemented to do anything additional to the dismissal.
- *
- *  @param vc The picker view controller that just canceled.
- */
-- (void)pickerViewControllerDidCancel:(RMPickerViewController *)vc;
-
-@end
 
 /**
  *  RMPickerViewController is an iOS control for selecting a row using UIPickerView in a UIActionSheet like fashion. When a RMPickerViewController is shown the user gets the opportunity to select some rows using a UIPickerView.
@@ -96,57 +37,7 @@ typedef void (^RMSetupBlock)(RMPickerViewController *vc);
  *
  *  @warning RMPickerViewController is not designed to be reused. Each time you want to display a RMPickerViewController a new instance should be created. If you want to select a specific row before displaying, you can do so by using the picker property.
  */
-@interface RMPickerViewController : UIViewController
-
-/// @name Getting an Instance
-
-/**
- *  This returns a new instance of RMPickerViewController.
- *
- *  @warning Always use this class method to get an instance. Do not initialize an instance yourself.
- *
- *  @return Returns a new instance of RMPickerViewController.
- */
-+ (instancetype)pickerController;
-
-/// @name Localization
-
-/**
- *  Set a localized title for the cancel button. Default title is 'Cancel'.
- *
- *  @param newLocalizedTitle    The new localized title for the cancel button.
- */
-+ (void)setLocalizedTitleForCancelButton:(NSString *)newLocalizedTitle;
-
-/**
- *  Set a localized title for the select button. Default title is 'Select'.
- *
- *  @param newLocalizedTitle    The new localized title for the select button.
- */
-+ (void)setLocalizedTitleForSelectButton:(NSString *)newLocalizedTitle;
-
-/**
- *  Set a image for the select button. Default is nil.
- *
- *  @param newImage    The new image for the select button.
- */
-+ (void)setImageForSelectButton:(UIImage *)newImage;
-
-/**
- *  Set a image for the cancel button. Default is nil.
- *
- *  @param newImage    The new image for the cancel button.
- */
-+ (void)setImageForCancelButton:(UIImage *)newImage;
-
-/// @name Delegate
-
-/**
- *  Used to set the delegate.
- *
- *  The delegate must conform to the RMPickerViewControllerDelegate protocol.
- */
-@property (nonatomic, weak) id<RMPickerViewControllerDelegate> delegate;
+@interface RMPickerViewController : RMActionController <UIPickerView *>
 
 /// @name User Interface
 
@@ -154,6 +45,7 @@ typedef void (^RMSetupBlock)(RMPickerViewController *vc);
  *  Will return the instance of UIPickerView that is used.
  */
 @property (nonatomic, readonly) UIPickerView *picker;
+
 
 /**
  *  Will be called oon ViewDidAppear.
@@ -306,5 +198,6 @@ typedef void (^RMSetupBlock)(RMPickerViewController *vc);
  *  This will dismiss the picker view controller and remove it from the view hierarchy.
  */
 - (void)dismiss;
+
 
 @end
