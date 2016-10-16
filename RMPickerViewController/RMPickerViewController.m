@@ -27,7 +27,6 @@
 #import "RMPickerViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-
 #define RM_PICKER_HEIGHT_PORTRAIT 216
 #define RM_PICKER_HEIGHT_LANDSCAPE 162
 
@@ -63,60 +62,7 @@
             self.pickerHeightConstraint.constant = RM_PICKER_HEIGHT_PORTRAIT;
         }
         
-        [UIView animateWithDuration:duration delay:0 usingSpringWithDamping:damping initialSpringVelocity:1 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{
-            aPickerViewController.backgroundView.alpha = 1;
-            
-            [aPickerViewController.rootViewController.view layoutIfNeeded];
-        } completion:^(BOOL finished) {
-        }];
-    } else {
-        aPickerViewController.backgroundView.alpha = 0;
-        
-        [aPickerViewController.rootViewController.view layoutIfNeeded];
-    }
-}
-
-+ (void)dismissPickerViewController:(RMPickerViewController *)aPickerViewController {
-    [aPickerViewController.rootViewController.view removeConstraint:aPickerViewController.yConstraint];
-    aPickerViewController.yConstraint = [NSLayoutConstraint constraintWithItem:aPickerViewController.view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:aPickerViewController.rootViewController.view attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
-       @try {
-            [aPickerViewController.rootViewController.view addConstraint:aPickerViewController.yConstraint];
-        } @catch (NSException *e) {
-            // eat this exception occasionally show up.
-        } 
-    
-    [aPickerViewController.rootViewController.view setNeedsUpdateConstraints];
-    
-    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-        aPickerViewController.backgroundView.alpha = 0;
-        
-        [aPickerViewController.rootViewController.view layoutIfNeeded];
-    } completion:^(BOOL finished) {
-        [aPickerViewController willMoveToParentViewController:nil];
-        [aPickerViewController viewWillDisappear:YES];
-        
-        [aPickerViewController.view removeFromSuperview];
-        [aPickerViewController removeFromParentViewController];
-        
-        [aPickerViewController didMoveToParentViewController:nil];
-        [aPickerViewController viewDidDisappear:YES];
-        
-        [aPickerViewController.backgroundView removeFromSuperview];
-        aPickerViewController.window = nil;
-        aPickerViewController.hasBeenDismissed = NO;
-    }];
-}
-
-#pragma mark - Init and Dealloc
-- (id)init {
-    self = [super init];
-    if(self) {
-        self.blurEffectStyle = UIBlurEffectStyleExtraLight;
-        
-        [self setupUIElements];
-=======
         [self.picker addConstraint:self.pickerHeightConstraint];
->>>>>>> af3b8a514cd2bbb09f9206e8c0f6aa1e315104b3
     }
     return self;
 }
@@ -124,13 +70,11 @@
 #pragma mark - Init and Dealloc
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate) name:UIDeviceOrientationDidChangeNotification object:nil];
-    
-    
+        
     if (self.setupBlock)
         self.setupBlock(self);
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
